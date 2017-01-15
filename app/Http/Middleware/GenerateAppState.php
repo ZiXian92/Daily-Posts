@@ -21,10 +21,10 @@ class GenerateAppState
      */
     public function handle($request, Closure $next)
     {
-        $this->state->user = [
-          'id' => 1,
-          'name' => 'zixian'
-        ];
+        // $this->state->user = [
+        //   'id' => 1,
+        //   'name' => 'zixian'
+        // ];
         $this->state->feed = [];
         return $next($request);
     }
