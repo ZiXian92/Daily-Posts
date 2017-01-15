@@ -15,6 +15,7 @@ use App\Http\Middleware\GenerateAppState;
 use App\State;
 
 Route::post('/register', 'Auth\RegisterController@register');
+Route::post('/login', 'Auth\LoginController@login');
 
 Route::get('/{any?}', function(Request $request, State $state) {
   $appstate = $state->asArray();
