@@ -14,6 +14,8 @@
 use App\Http\Middleware\GenerateAppState;
 use App\State;
 
+Route::post('/register', 'Auth\RegisterController@register');
+
 Route::get('/{any?}', function(Request $request, State $state) {
   $appstate = $state->asArray();
   return view('layouts.index', ['state' => $appstate]);

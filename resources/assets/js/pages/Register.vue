@@ -32,6 +32,8 @@
             <button type="submit" class="btn btn-primary">Register</button>
           </div>
         </form>
+        <br>
+        <div class="alert alert-danger" v-if="hasError">{{ errormsg }}</div>
       </div>
     </div>
   </div>
@@ -52,14 +54,14 @@
     methods: {
       registerUser: function() {
         if(this.password.length<8){
-          this.errormsg = 'Password should be at least 8 characters long.';
-          this.hasError = true;
-          return false;
+          this.errormsg = 'Password should be at least 8 characters long.'
+          this.hasError = true
+          return false
         }
         if(this.password!==this.password_confirmation){
-          this.errormsg = 'The 2 passwords do not match!';
-          this.hasError = true;
-          return false;
+          this.errormsg = 'The 2 passwords do not match!'
+          this.hasError = true
+          return false
         }
         let userData = {
           name: this.name,
@@ -71,9 +73,18 @@
         console.log(userData);
 
         // Send AJAX request
-
-        // On success, go to login
-        this.$router.push('/login');
+        this.$http.post('/register', userData, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then(response => {
+          console.log(response)
+          this.$router.push('/login')
+        }, response => {
+          console.log(response)
+          this.errormsg = 'An error occurred'
+          this.hasError = true
+        })
       }
     }
   }
