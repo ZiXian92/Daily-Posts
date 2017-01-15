@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/{any?}', function() {
-  return view('layouts.index');
-})->where('any', '(.*)');
+use App\Http\Middleware\GenerateAppState;
+use App\State;
+
+Route::get('/{any?}', function(Request $request, State $state) {
+  $appstate = $state->asArray();
+  return view('layouts.index', ['state' => $appstate]);
+})->where('any', '(.*)')->middleware(GenerateAppState::class);

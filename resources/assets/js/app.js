@@ -26,14 +26,19 @@ const routes = [
   { path: '/', component: Home },
   { path: '/login', component: Login },
   { path: '/register', component: Register },
-];
+]
 
 const router = new VueRouter({
   mode: 'history',
   routes
 })
 
+const store = new Vuex.Store({
+  state
+})
+
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    store
 })

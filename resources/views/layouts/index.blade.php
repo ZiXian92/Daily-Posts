@@ -21,6 +21,7 @@
     </body>
     <script>
       var csrf = "{{ csrf_token() }}";
+      var state = {!! json_encode($state) !!}
     </script>
     <script src="js/app.js"></script>
 </html>
