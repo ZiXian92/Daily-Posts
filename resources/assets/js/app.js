@@ -34,7 +34,12 @@ const router = new VueRouter({
 })
 
 const store = new Vuex.Store({
-  state
+  state,
+  mutations: {
+    setUser(state, user) { state.user = user },
+    setFeed(state, feed) { state.feed = feed },
+    setProfile(state, profile) { state.profile = profile }
+  }
 })
 
 const app = new Vue({
